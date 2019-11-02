@@ -3,25 +3,25 @@ Developer notes
 
 ### Distributions
 
-There are 4 official ways to point to flatdoc releases. That is:
+There are 4 official ways to point to nextdoc releases. That is:
 
     # via cdnjs:
-    https://cdn.rawgit.com/rstacruz/flatdoc/v0.8.6/flatdoc.js
+    https://cdn.rawgit.com/rstacruz/nextdoc/v0.8.6/nextdoc.js
 
     # Specific versions
     # (built using `make v/0.8.1`)
-    http://rstacruz.github.io/flatdoc/v/0.8.6/*
+    http://rstacruz.github.io/nextdoc/v/0.8.6/*
 
     # Latest from the 0.8 series.
     # Updated every time there's a 0.8 release.
     # (built using `make v/0.8`)
-    http://rstacruz.github.io/flatdoc/v/0.8/*
+    http://rstacruz.github.io/nextdoc/v/0.8/*
 
     # Latest
     # (built using `make`)
-    http://rstacruz.github.io/flatdoc/*
+    http://rstacruz.github.io/nextdoc/*
 
-...just replace `*` with `flatdoc.js` (or any of the other support files).
+...just replace `*` with `nextdoc.js` (or any of the other support files).
 
 ### GNU make
 
@@ -33,7 +33,7 @@ This project uses GNU make (`Makefile`) to manage the builds.
 
 ### Notes on structure
 
- * `flatdoc.js` is the main script.
+ * `nextdoc.js` is the main script.
  * Distributions are stored in `/v/{version}/*`.
  * CSS files are compiled from Stylus sources.
 

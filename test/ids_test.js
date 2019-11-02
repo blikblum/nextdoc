@@ -2,7 +2,7 @@ describe("IDs", function() {
   beforeEach(require('./setup'));
 
   beforeEach(function(done) {
-    Flatdoc.run({
+    Nextdoc.run({
       fetcher: function(callback) {
         callback(null, '# a\n\n## b\n\n### c');
         done();

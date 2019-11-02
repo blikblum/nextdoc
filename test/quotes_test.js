@@ -3,7 +3,7 @@ describe("Quotes", function() {
 
   describe("One", function() {
     beforeEach(function(done) {
-      Flatdoc.run({
+      Nextdoc.run({
         fetcher: function(callback) {
           callback(null, '"Hello" said the ranger--indeed.');
           done();
@@ -22,7 +22,7 @@ describe("Quotes", function() {
 
   describe("Two", function() {
     beforeEach(function(done) {
-      Flatdoc.run({
+      Nextdoc.run({
         fetcher: function(callback) {
           callback(null, '...That\'s all folks!');
           done();

@@ -6,7 +6,7 @@
   * Scrollspy.
   */
 
- $document.on('flatdoc:ready', function() {
+ $document.on('nextdoc:ready', function() {
     $("h2, h3").scrollagent(function(cid, pid) {
       if (pid) {
        $("[href='#"+pid+"']").removeClass('active');
@@ -21,7 +21,7 @@
   * Anchor jump links.
   */
 
- $document.on('flatdoc:ready', function() {
+ $document.on('nextdoc:ready', function() {
    $('.menu a').anchorjump();
  });
 

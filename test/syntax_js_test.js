@@ -2,7 +2,7 @@ describe("Syntax highlight: JS", function() {
   beforeEach(require('./setup'));
 
   beforeEach(function(done) {
-    Flatdoc.run({
+    Nextdoc.run({
       fetcher: function(callback) {
         callback(null, '# Hola\n\n```js\nfunction() { x }```');
         done();

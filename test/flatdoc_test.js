@@ -1,13 +1,13 @@
-describe("Flatdoc", function() {
+describe("Nextdoc", function() {
   beforeEach(require('./setup'));
 
   it("Should be present", function() {
-    assert.equal('object', typeof window.Flatdoc);
+    assert.equal('object', typeof window.Nextdoc);
   });
 
   describe("Simple", function() {
     beforeEach(function(done) {
-      Flatdoc.run({
+      Nextdoc.run({
         fetcher: function(callback) {
           callback(null, '# Hola\n\nHey there `world`');
           done();

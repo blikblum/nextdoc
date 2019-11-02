@@ -1,4 +1,4 @@
-Flatdoc examples
+Nextdoc examples
 ================
 
 ### Large sidebar button
@@ -40,8 +40,8 @@ Indeed, a home recalls her acuse among solutions. Yes! A phone recalls the
 vision below wires.
 
 ``` js
-Flatdoc.run({
-  fetcher: Flatdoc.file('support/examples.md')
+Nextdoc.run({
+  fetcher: Nextdoc.file('support/examples.md')
 });
 ```
 

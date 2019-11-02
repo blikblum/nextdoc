@@ -20,12 +20,12 @@ module.exports = function(done) {
     html: getFile('test/fixtures/context.html'),
     src: [
       getFile('support/vendor/jquery.js'),
-      getFile('flatdoc.js')
+      getFile('nextdoc.js')
     ],
     done: function(errors, window) {
       global.window = window;
       global.$ = window.jQuery;
-      global.Flatdoc = window.Flatdoc;
+      global.Nextdoc = window.Nextdoc;
       done(errors);
     }
   });

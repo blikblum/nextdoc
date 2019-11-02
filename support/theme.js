@@ -1,6 +1,6 @@
 (function($) {
 
-  $(document).on('flatdoc:ready', function() {
+  $(document).on('nextdoc:ready', function() {
     $("#misc, #basic").remove();
 
     $("pre > code").each(function() {
@@ -12,7 +12,7 @@
           var klass = $(this).attr('href').substr(1);
           $('body').toggleClass(klass);
           if (klass === 'big-h3') $.anchorjump('#theme-options');
-          if (klass === 'large-brief') $.anchorjump('#flatdoc');
+          if (klass === 'large-brief') $.anchorjump('#nextdoc');
 
         });
         $code.after($q);

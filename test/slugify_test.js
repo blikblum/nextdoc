@@ -10,7 +10,7 @@ describe("Slugify", function () {
 
   function assert(input, output) {
     it(input, function() {
-      expect(Flatdoc.slugify(input)).eql(output);
+      expect(Nextdoc.slugify(input)).eql(output);
     });
   }
 });

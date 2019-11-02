@@ -1,44 +1,44 @@
-Flatdoc
+Nextdoc
 =======
 
-Basic Flatdoc module.
+Basic Nextdoc module.
 
-The main entry point is `Flatdoc.run()`, which invokes the [Runner].
+The main entry point is `Nextdoc.run()`, which invokes the [Runner].
 
 ```js
-Flatdoc.run({
-  fetcher: Flatdoc.github('rstacruz/backbone-patterns');
+Nextdoc.run({
+  fetcher: Nextdoc.github('rstacruz/backbone-patterns');
 });
 ```
 
 These fetcher functions are available:
 
 ```js
-Flatdoc.github('owner/repo')
-Flatdoc.github('owner/repo', 'API.md')
-Flatdoc.github('owner/repo', 'API.md', 'branch')
-Flatdoc.bitbucket('owner/repo')
-Flatdoc.bitbucket('owner/repo', 'API.md')
-Flatdoc.bitbucket('owner/repo', 'API.md', 'branch')
-Flatdoc.file('http://path/to/url')
-Flatdoc.file([ 'http://path/to/url', ... ])
+Nextdoc.github('owner/repo')
+Nextdoc.github('owner/repo', 'API.md')
+Nextdoc.github('owner/repo', 'API.md', 'branch')
+Nextdoc.bitbucket('owner/repo')
+Nextdoc.bitbucket('owner/repo', 'API.md')
+Nextdoc.bitbucket('owner/repo', 'API.md', 'branch')
+Nextdoc.file('http://path/to/url')
+Nextdoc.file([ 'http://path/to/url', ... ])
 ```
 
 
 
-### Flatdoc.run()
+### Nextdoc.run()
 
 Creates a runner.
-See [Flatdoc].
+See [Nextdoc].
 
-### Flatdoc.file()
+### Nextdoc.file()
 
 File fetcher function.
 
 Fetches a given `url` via AJAX.
 See [Runner#run()] for a description of fetcher functions.
 
-### Flatdoc.github()
+### Nextdoc.github()
 
 Github fetcher.
 Fetches from repo `repo` (in format 'user/repo').
@@ -52,7 +52,7 @@ See [Runner#run()] for a description of fetcher functions.
 
 See: http://developer.github.com/v3/repos/contents/
 
-### Flatdoc.bitbucket()
+### Nextdoc.bitbucket()
 
 Bitbucket fetcher.
 Fetches from repo `repo` (in format 'user/repo').
@@ -82,7 +82,7 @@ Parses a given Markdown document and returns a JSON object with data
 on the Markdown document.
 
 ```js
-var data = Flatdoc.parser.parse('markdown source here');
+var data = Nextdoc.parser.parse('markdown source here');
 console.log(data);
 
 data == {
@@ -108,11 +108,11 @@ This takes care of any HTML mangling needed.  The main entry point is
 
 ```js
 var $content = $("<p>Hello there, this is a docu...");
-Flatdoc.transformer.mangle($content);
+Nextdoc.transformer.mangle($content);
 ```
 
 If you would like to change any of the transformations, decorate any of
-the functions in `Flatdoc.transformer`.
+the functions in `Nextdoc.transformer`.
 
 ### Transformer.mangle()
 
@@ -130,7 +130,7 @@ Adds IDs to headings.
 Returns menu data for a given HTML.
 
 ```js
-menu = Flatdoc.transformer.getMenu($content);
+menu = Nextdoc.transformer.getMenu($content);
 menu == {
   level: 0,
   items: [{
@@ -155,11 +155,11 @@ Highlighters
 
 Syntax highlighters.
 
-You may add or change more highlighters via the `Flatdoc.highlighters`
+You may add or change more highlighters via the `Nextdoc.highlighters`
 object.
 
 ```js
-Flatdoc.highlighters.js = function(code) {
+Nextdoc.highlighters.js = function(code) {
 };
 ```
 
@@ -182,8 +182,8 @@ Runner
 A runner module that fetches via a `fetcher` function.
 
 ```js
-var runner = new Flatdoc.runner({
-  fetcher: Flatdoc.url('readme.txt')
+var runner = new Nextdoc.runner({
+  fetcher: Nextdoc.url('readme.txt')
 });
 runner.run();
 ```
@@ -193,7 +193,7 @@ The following options are available:
  - `fetcher` - a function that takes a callback as an argument and
    executes that callback when data is returned.
 
-See: [Flatdoc.run()]
+See: [Nextdoc.run()]
 
 ### Runner#highlight()
 
@@ -203,7 +203,7 @@ You may define a custom highlight function such as `highlight` from
 the highlight.js library.
 
 ```js
-Flatdoc.run({
+Nextdoc.run({
   highlight: function (code, value) {
     return hljs.highlight(lang, code).value;
   },
@@ -223,11 +223,11 @@ to the elements.
 Applies given doc data `data` to elements in object `elements`.
 
 
-[Flatdoc]: #flatdoc
-[Flatdoc.run()]: #flatdoc-run
-[Flatdoc.file()]: #flatdoc-file
-[Flatdoc.github()]: #flatdoc-github
-[Flatdoc.bitbucket()]: #flatdoc-bitbucket
+[Nextdoc]: #nextdoc
+[Nextdoc.run()]: #nextdoc-run
+[Nextdoc.file()]: #nextdoc-file
+[Nextdoc.github()]: #nextdoc-github
+[Nextdoc.bitbucket()]: #nextdoc-bitbucket
 [Parser]: #parser
 [Parser.parse()]: #parser-parse
 [Transformer]: #transformer

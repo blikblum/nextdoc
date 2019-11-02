@@ -1,6 +1,7 @@
 /*!
- * Flatdoc - (c) 2013, 2014 Rico Sta. Cruz
- * http://ricostacruz.com/flatdoc
+ * Nextdoc - (c) 2019 Luiz Américo Pereira Câmara
+ * Nextdoc - (c) 2013, 2014 Rico Sta. Cruz
+ * http://ricostacruz.com/nextdoc
  * @license MIT
  */
 
@@ -10,35 +11,35 @@
   var marked;
 
   /**
-   * Basic Flatdoc module.
+   * Basic Nextdoc module.
    *
-   * The main entry point is `Flatdoc.run()`, which invokes the [Runner].
+   * The main entry point is `Nextdoc.run()`, which invokes the [Runner].
    *
-   *     Flatdoc.run({
-   *       fetcher: Flatdoc.github('rstacruz/backbone-patterns');
+   *     Nextdoc.run({
+   *       fetcher: Nextdoc.github('rstacruz/backbone-patterns');
    *     });
    *
    * These fetcher functions are available:
    *
-   *     Flatdoc.github('owner/repo')
-   *     Flatdoc.github('owner/repo', 'API.md')
-   *     Flatdoc.github('owner/repo', 'API.md', 'branch')
-   *     Flatdoc.bitbucket('owner/repo')
-   *     Flatdoc.bitbucket('owner/repo', 'API.md')
-   *     Flatdoc.bitbucket('owner/repo', 'API.md', 'branch')
-   *     Flatdoc.file('http://path/to/url')
-   *     Flatdoc.file([ 'http://path/to/url', ... ])
+   *     Nextdoc.github('owner/repo')
+   *     Nextdoc.github('owner/repo', 'API.md')
+   *     Nextdoc.github('owner/repo', 'API.md', 'branch')
+   *     Nextdoc.bitbucket('owner/repo')
+   *     Nextdoc.bitbucket('owner/repo', 'API.md')
+   *     Nextdoc.bitbucket('owner/repo', 'API.md', 'branch')
+   *     Nextdoc.file('http://path/to/url')
+   *     Nextdoc.file([ 'http://path/to/url', ... ])
    */
 
-  var Flatdoc = exports.Flatdoc = {};
+  var Nextdoc = exports.Nextdoc = {};
 
   /**
    * Creates a runner.
-   * See [Flatdoc].
+   * See [Nextdoc].
    */
 
-  Flatdoc.run = function(options) {
-    $(function() { (new Flatdoc.runner(options)).run(); });
+  Nextdoc.run = function(options) {
+    $(function() { (new Nextdoc.runner(options)).run(); });
   };
 
   /**
@@ -48,7 +49,7 @@
    * See [Runner#run()] for a description of fetcher functions.
    */
 
-  Flatdoc.file = function(url) {
+  Nextdoc.file = function(url) {
     function loadData(locations, response, callback) {
       if (locations.length === 0) callback(null, response);
 
@@ -82,7 +83,7 @@
    *
    * See: http://developer.github.com/v3/repos/contents/
    */
-  Flatdoc.github = function(opts) {
+  Nextdoc.github = function(opts) {
     if (typeof opts === 'string') {
       opts = {
         repo: arguments[0],
@@ -133,7 +134,7 @@
    * things like 'tip' or the repo-local integer revision number
    * Default to Mercurial because Git users historically tend to use GitHub
    */
-  Flatdoc.bitbucket = function(opts) {
+  Nextdoc.bitbucket = function(opts) {
     if (typeof opts === 'string') {
       opts = {
         repo: arguments[0],
@@ -166,7 +167,7 @@
    * Parses a given Markdown document and returns a JSON object with data
    * on the Markdown document.
    *
-   *     var data = Flatdoc.parser.parse('markdown source here');
+   *     var data = Nextdoc.parser.parse('markdown source here');
    *     console.log(data);
    *
    *     data == {
@@ -176,7 +177,7 @@
    *     }
    */
 
-  var Parser = Flatdoc.parser = {};
+  var Parser = Nextdoc.parser = {};
 
   /**
    * Parses a given Markdown document.
@@ -215,13 +216,13 @@
    * `.mangle()` which applies all transformations needed.
    *
    *     var $content = $("<p>Hello there, this is a docu...");
-   *     Flatdoc.transformer.mangle($content);
+   *     Nextdoc.transformer.mangle($content);
    *
    * If you would like to change any of the transformations, decorate any of
-   * the functions in `Flatdoc.transformer`.
+   * the functions in `Nextdoc.transformer`.
    */
 
-  var Transformer = Flatdoc.transformer = {};
+  var Transformer = Nextdoc.transformer = {};
 
   /**
    * Takes a given HTML `$content` and improves the markup of it by executing
@@ -245,7 +246,7 @@
       var $el = $(this);
       var num = parseInt(this.nodeName[1]);
       var text = $el.text();
-      var slug = Flatdoc.slugify(text);
+      var slug = Nextdoc.slugify(text);
       if (num > 1) slug = slugs[num - 2] + '-' + slug;
       slugs.length = num - 1;
       slugs = slugs.concat([slug, slug]);
@@ -256,7 +257,7 @@
   /**
    * Returns menu data for a given HTML.
    *
-   *     menu = Flatdoc.transformer.getMenu($content);
+   *     menu = Nextdoc.transformer.getMenu($content);
    *     menu == {
    *       level: 0,
    *       items: [{
@@ -324,16 +325,16 @@
   /**
    * Syntax highlighters.
    *
-   * You may add or change more highlighters via the `Flatdoc.highlighters`
+   * You may add or change more highlighters via the `Nextdoc.highlighters`
    * object.
    *
-   *     Flatdoc.highlighters.js = function(code) {
+   *     Nextdoc.highlighters.js = function(code) {
    *     };
    *
    * Each of these functions
    */
 
-  var Highlighters = Flatdoc.highlighters = {};
+  var Highlighters = Nextdoc.highlighters = {};
 
   /**
    * JavaScript syntax highlighter.
@@ -380,7 +381,7 @@
    * Menu view. Renders menus
    */
 
-  var MenuView = Flatdoc.menuView = function(menu) {
+  var MenuView = Nextdoc.menuView = function(menu) {
     var $el = $("<ul>");
 
     function process(node, $parent) {
@@ -419,8 +420,8 @@
   /**
    * A runner module that fetches via a `fetcher` function.
    *
-   *     var runner = new Flatdoc.runner({
-   *       fetcher: Flatdoc.url('readme.txt')
+   *     var runner = new Nextdoc.runner({
+   *       fetcher: Nextdoc.url('readme.txt')
    *     });
    *     runner.run();
    *
@@ -429,17 +430,17 @@
    *  - `fetcher` - a function that takes a callback as an argument and
    *    executes that callback when data is returned.
    *
-   * See: [Flatdoc.run()]
+   * See: [Nextdoc.run()]
    */
 
-  var Runner = Flatdoc.runner = function(options) {
+  var Runner = Nextdoc.runner = function(options) {
     this.initialize(options);
   };
 
-  Runner.prototype.root    = '[role~="flatdoc"]';
-  Runner.prototype.menu    = '[role~="flatdoc-menu"]';
-  Runner.prototype.title   = '[role~="flatdoc-title"]';
-  Runner.prototype.content = '[role~="flatdoc-content"]';
+  Runner.prototype.root    = '[role~="nextdoc"]';
+  Runner.prototype.menu    = '[role~="nextdoc-menu"]';
+  Runner.prototype.title   = '[role~="nextdoc-title"]';
+  Runner.prototype.content = '[role~="nextdoc-content"]';
 
   Runner.prototype.initialize = function(options) {
     $.extend(this, options);
@@ -451,7 +452,7 @@
    * You may define a custom highlight function such as `highlight` from
    * the highlight.js library.
    *
-   *     Flatdoc.run({
+   *     Nextdoc.run({
    *       highlight: function (code, value) {
    *         return hljs.highlight(lang, code).value;
    *       },
@@ -461,7 +462,7 @@
    */
 
   Runner.prototype.highlight = function(code, lang) {
-    var fn = Flatdoc.highlighters[lang] || Flatdoc.highlighters.generic;
+    var fn = Nextdoc.highlighters[lang] || Nextdoc.highlighters.generic;
     return fn(code);
   };
 
@@ -472,20 +473,20 @@
 
   Runner.prototype.run = function() {
     var doc = this;
-    $(doc.root).trigger('flatdoc:loading');
+    $(doc.root).trigger('nextdoc:loading');
     doc.fetcher(function(err, markdown) {
       if (err) {
-        console.error('[Flatdoc] fetching Markdown data failed.', err);
+        console.error('[Nextdoc] fetching Markdown data failed.', err);
         return;
       }
-      var data = Flatdoc.parser.parse(markdown, doc.highlight);
+      var data = Nextdoc.parser.parse(markdown, doc.highlight);
       doc.applyData(data, doc);
       var id = location.hash.substr(1);
       if (id) {
         var el = document.getElementById(id);
         if (el) el.scrollIntoView(true);
       }
-      $(doc.root).trigger('flatdoc:ready');
+      $(doc.root).trigger('nextdoc:ready');
     });
   };
 
@@ -550,9 +551,9 @@
 /*!
  * node-parameterize 0.0.7
  * https://github.com/fyalavuz/node-parameterize
- * Exported as `Flatdoc.slugify`
+ * Exported as `Nextdoc.slugify`
  */
 
-(function(r){var LATIN_MAP={"À":"A","Á":"A","Â":"A","Ã":"A","Ä":"A","Å":"A","Æ":"AE","Ç":"C","È":"E","É":"E","Ê":"E","Ë":"E","Ì":"I","Í":"I","Î":"I","Ï":"I","Ð":"D","Ñ":"N","Ò":"O","Ó":"O","Ô":"O","Õ":"O","Ö":"O","Ő":"O","Ø":"O","Ù":"U","Ú":"U","Û":"U","Ü":"U","Ű":"U","Ý":"Y","Þ":"TH","ß":"ss","à":"a","á":"a","â":"a","ã":"a","ä":"a","å":"a","æ":"ae","ç":"c","è":"e","é":"e","ê":"e","ë":"e","ì":"i","í":"i","î":"i","ï":"i","ð":"d","ñ":"n","ò":"o","ó":"o","ô":"o","õ":"o","ö":"o","ő":"o","ø":"o","ù":"u","ú":"u","û":"u","ü":"u","ű":"u","ý":"y","þ":"th","ÿ":"y"};var LATIN_SYMBOLS_MAP={"©":"(c)"};var GREEK_MAP={"α":"a","β":"b","γ":"g","δ":"d","ε":"e","ζ":"z","η":"h","θ":"8","ι":"i","κ":"k","λ":"l","μ":"m","ν":"n","ξ":"3","ο":"o","π":"p","ρ":"r","σ":"s","τ":"t","υ":"y","φ":"f","χ":"x","ψ":"ps","ω":"w","ά":"a","έ":"e","ί":"i","ό":"o","ύ":"y","ή":"h","ώ":"w","ς":"s","ϊ":"i","ΰ":"y","ϋ":"y","ΐ":"i","Α":"A","Β":"B","Γ":"G","Δ":"D","Ε":"E","Ζ":"Z","Η":"H","Θ":"8","Ι":"I","Κ":"K","Λ":"L","Μ":"M","Ν":"N","Ξ":"3","Ο":"O","Π":"P","Ρ":"R","Σ":"S","Τ":"T","Υ":"Y","Φ":"F","Χ":"X","Ψ":"PS","Ω":"W","Ά":"A","Έ":"E","Ί":"I","Ό":"O","Ύ":"Y","Ή":"H","Ώ":"W","Ϊ":"I","Ϋ":"Y"};var TURKISH_MAP={"ş":"s","Ş":"S","ı":"i","İ":"I","ç":"c","Ç":"C","ü":"u","Ü":"U","ö":"o","Ö":"O","ğ":"g","Ğ":"G"};var RUSSIAN_MAP={"а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ё":"yo","ж":"zh","з":"z","и":"i","й":"j","к":"k","л":"l","м":"m","н":"n","о":"o","п":"p","р":"r","с":"s","т":"t","у":"u","ф":"f","х":"h","ц":"c","ч":"ch","ш":"sh","щ":"sh","ъ":"","ы":"y","ь":"","э":"e","ю":"yu","я":"ya","А":"A","Б":"B","В":"V","Г":"G","Д":"D","Е":"E","Ё":"Yo","Ж":"Zh","З":"Z","И":"I","Й":"J","К":"K","Л":"L","М":"M","Н":"N","О":"O","П":"P","Р":"R","С":"S","Т":"T","У":"U","Ф":"F","Х":"H","Ц":"C","Ч":"Ch","Ш":"Sh","Щ":"Sh","Ъ":"","Ы":"Y","Ь":"","Э":"E","Ю":"Yu","Я":"Ya"};var UKRAINIAN_MAP={"Є":"Ye","І":"I","Ї":"Yi","Ґ":"G","є":"ye","і":"i","ї":"yi","ґ":"g"};var CZECH_MAP={"č":"c","ď":"d","ě":"e","ň":"n","ř":"r","š":"s","ť":"t","ů":"u","ž":"z","Č":"C","Ď":"D","Ě":"E","Ň":"N","Ř":"R","Š":"S","Ť":"T","Ů":"U","Ž":"Z"};var POLISH_MAP={"ą":"a","ć":"c","ę":"e","ł":"l","ń":"n","ó":"o","ś":"s","ź":"z","ż":"z","Ą":"A","Ć":"C","Ę":"e","Ł":"L","Ń":"N","Ó":"o","Ś":"S","Ź":"Z","Ż":"Z"};var LATVIAN_MAP={"ā":"a","č":"c","ē":"e","ģ":"g","ī":"i","ķ":"k","ļ":"l","ņ":"n","š":"s","ū":"u","ž":"z","Ā":"A","Č":"C","Ē":"E","Ģ":"G","Ī":"i","Ķ":"k","Ļ":"L","Ņ":"N","Š":"S","Ū":"u","Ž":"Z"};var ALL_DOWNCODE_MAPS=new Array;ALL_DOWNCODE_MAPS[0]=LATIN_MAP;ALL_DOWNCODE_MAPS[1]=LATIN_SYMBOLS_MAP;ALL_DOWNCODE_MAPS[2]=GREEK_MAP;ALL_DOWNCODE_MAPS[3]=TURKISH_MAP;ALL_DOWNCODE_MAPS[4]=RUSSIAN_MAP;ALL_DOWNCODE_MAPS[5]=UKRAINIAN_MAP;ALL_DOWNCODE_MAPS[6]=CZECH_MAP;ALL_DOWNCODE_MAPS[7]=POLISH_MAP;ALL_DOWNCODE_MAPS[8]=LATVIAN_MAP;var Downcoder=new Object;Downcoder.Initialize=function(){if(Downcoder.map)return;Downcoder.map={};Downcoder.chars="";for(var i in ALL_DOWNCODE_MAPS){var lookup=ALL_DOWNCODE_MAPS[i];for(var c in lookup){Downcoder.map[c]=lookup[c];Downcoder.chars+=c}}Downcoder.regex=new RegExp("["+Downcoder.chars+"]|[^"+Downcoder.chars+"]+","g")};downcode=function(slug){Downcoder.Initialize();var downcoded="";var pieces=slug.match(Downcoder.regex);if(pieces){for(var i=0;i<pieces.length;i++){if(pieces[i].length==1){var mapped=Downcoder.map[pieces[i]];if(mapped!=null){downcoded+=mapped;continue}}downcoded+=pieces[i]}}else{downcoded=slug}return downcoded};Flatdoc.slugify=function(s,num_chars){s=downcode(s);s=s.replace(/[^-\w\s]/g,"");s=s.replace(/^\s+|\s+$/g,"");s=s.replace(/[-\s]+/g,"-");s=s.toLowerCase();return s.substring(0,num_chars)};})();
+(function(r){var LATIN_MAP={"À":"A","Á":"A","Â":"A","Ã":"A","Ä":"A","Å":"A","Æ":"AE","Ç":"C","È":"E","É":"E","Ê":"E","Ë":"E","Ì":"I","Í":"I","Î":"I","Ï":"I","Ð":"D","Ñ":"N","Ò":"O","Ó":"O","Ô":"O","Õ":"O","Ö":"O","Ő":"O","Ø":"O","Ù":"U","Ú":"U","Û":"U","Ü":"U","Ű":"U","Ý":"Y","Þ":"TH","ß":"ss","à":"a","á":"a","â":"a","ã":"a","ä":"a","å":"a","æ":"ae","ç":"c","è":"e","é":"e","ê":"e","ë":"e","ì":"i","í":"i","î":"i","ï":"i","ð":"d","ñ":"n","ò":"o","ó":"o","ô":"o","õ":"o","ö":"o","ő":"o","ø":"o","ù":"u","ú":"u","û":"u","ü":"u","ű":"u","ý":"y","þ":"th","ÿ":"y"};var LATIN_SYMBOLS_MAP={"©":"(c)"};var GREEK_MAP={"α":"a","β":"b","γ":"g","δ":"d","ε":"e","ζ":"z","η":"h","θ":"8","ι":"i","κ":"k","λ":"l","μ":"m","ν":"n","ξ":"3","ο":"o","π":"p","ρ":"r","σ":"s","τ":"t","υ":"y","φ":"f","χ":"x","ψ":"ps","ω":"w","ά":"a","έ":"e","ί":"i","ό":"o","ύ":"y","ή":"h","ώ":"w","ς":"s","ϊ":"i","ΰ":"y","ϋ":"y","ΐ":"i","Α":"A","Β":"B","Γ":"G","Δ":"D","Ε":"E","Ζ":"Z","Η":"H","Θ":"8","Ι":"I","Κ":"K","Λ":"L","Μ":"M","Ν":"N","Ξ":"3","Ο":"O","Π":"P","Ρ":"R","Σ":"S","Τ":"T","Υ":"Y","Φ":"F","Χ":"X","Ψ":"PS","Ω":"W","Ά":"A","Έ":"E","Ί":"I","Ό":"O","Ύ":"Y","Ή":"H","Ώ":"W","Ϊ":"I","Ϋ":"Y"};var TURKISH_MAP={"ş":"s","Ş":"S","ı":"i","İ":"I","ç":"c","Ç":"C","ü":"u","Ü":"U","ö":"o","Ö":"O","ğ":"g","Ğ":"G"};var RUSSIAN_MAP={"а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ё":"yo","ж":"zh","з":"z","и":"i","й":"j","к":"k","л":"l","м":"m","н":"n","о":"o","п":"p","р":"r","с":"s","т":"t","у":"u","ф":"f","х":"h","ц":"c","ч":"ch","ш":"sh","щ":"sh","ъ":"","ы":"y","ь":"","э":"e","ю":"yu","я":"ya","А":"A","Б":"B","В":"V","Г":"G","Д":"D","Е":"E","Ё":"Yo","Ж":"Zh","З":"Z","И":"I","Й":"J","К":"K","Л":"L","М":"M","Н":"N","О":"O","П":"P","Р":"R","С":"S","Т":"T","У":"U","Ф":"F","Х":"H","Ц":"C","Ч":"Ch","Ш":"Sh","Щ":"Sh","Ъ":"","Ы":"Y","Ь":"","Э":"E","Ю":"Yu","Я":"Ya"};var UKRAINIAN_MAP={"Є":"Ye","І":"I","Ї":"Yi","Ґ":"G","є":"ye","і":"i","ї":"yi","ґ":"g"};var CZECH_MAP={"č":"c","ď":"d","ě":"e","ň":"n","ř":"r","š":"s","ť":"t","ů":"u","ž":"z","Č":"C","Ď":"D","Ě":"E","Ň":"N","Ř":"R","Š":"S","Ť":"T","Ů":"U","Ž":"Z"};var POLISH_MAP={"ą":"a","ć":"c","ę":"e","ł":"l","ń":"n","ó":"o","ś":"s","ź":"z","ż":"z","Ą":"A","Ć":"C","Ę":"e","Ł":"L","Ń":"N","Ó":"o","Ś":"S","Ź":"Z","Ż":"Z"};var LATVIAN_MAP={"ā":"a","č":"c","ē":"e","ģ":"g","ī":"i","ķ":"k","ļ":"l","ņ":"n","š":"s","ū":"u","ž":"z","Ā":"A","Č":"C","Ē":"E","Ģ":"G","Ī":"i","Ķ":"k","Ļ":"L","Ņ":"N","Š":"S","Ū":"u","Ž":"Z"};var ALL_DOWNCODE_MAPS=new Array;ALL_DOWNCODE_MAPS[0]=LATIN_MAP;ALL_DOWNCODE_MAPS[1]=LATIN_SYMBOLS_MAP;ALL_DOWNCODE_MAPS[2]=GREEK_MAP;ALL_DOWNCODE_MAPS[3]=TURKISH_MAP;ALL_DOWNCODE_MAPS[4]=RUSSIAN_MAP;ALL_DOWNCODE_MAPS[5]=UKRAINIAN_MAP;ALL_DOWNCODE_MAPS[6]=CZECH_MAP;ALL_DOWNCODE_MAPS[7]=POLISH_MAP;ALL_DOWNCODE_MAPS[8]=LATVIAN_MAP;var Downcoder=new Object;Downcoder.Initialize=function(){if(Downcoder.map)return;Downcoder.map={};Downcoder.chars="";for(var i in ALL_DOWNCODE_MAPS){var lookup=ALL_DOWNCODE_MAPS[i];for(var c in lookup){Downcoder.map[c]=lookup[c];Downcoder.chars+=c}}Downcoder.regex=new RegExp("["+Downcoder.chars+"]|[^"+Downcoder.chars+"]+","g")};downcode=function(slug){Downcoder.Initialize();var downcoded="";var pieces=slug.match(Downcoder.regex);if(pieces){for(var i=0;i<pieces.length;i++){if(pieces[i].length==1){var mapped=Downcoder.map[pieces[i]];if(mapped!=null){downcoded+=mapped;continue}}downcoded+=pieces[i]}}else{downcoded=slug}return downcoded};Nextdoc.slugify=function(s,num_chars){s=downcode(s);s=s.replace(/[^-\w\s]/g,"");s=s.replace(/^\s+|\s+$/g,"");s=s.replace(/[-\s]+/g,"-");s=s.toLowerCase();return s.substring(0,num_chars)};})();
 
 /* jshint ignore:end */

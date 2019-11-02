@@ -1,9 +1,11 @@
-Flatdoc
+Nextdoc
 =======
 
-Flatdoc is a small JavaScript file that fetches Markdown files and renders them
+Nextdoc is a small JavaScript file that fetches Markdown files and renders them
 as full pages. Essentially, it's the easiest
 way to make open source documentation from *Readme* files.
+
+It's a mordenized fork of [flatdoc]
 
  * No server-side components
  * No build process needed
@@ -13,8 +15,6 @@ way to make open source documentation from *Readme* files.
  * Just create an HTML file and deploy!
 
 *Current version: [v0.9.0][dist]*
-
-[![Build Status](https://travis-ci.org/rstacruz/flatdoc.svg?branch=gh-pages)](https://travis-ci.org/rstacruz/flatdoc)
 
 Getting started
 ---------------
@@ -32,17 +32,17 @@ The main JS and CSS files are also available in [npm] and [bower].
 
 [Blank template >][blank]
 
-[bower]: http://bower.io/search/?q=flatdoc
-[npm]: https://www.npmjs.org/package/flatdoc
+[bower]: http://bower.io/search/?q=nextdoc
+[npm]: https://www.npmjs.org/package/nextdoc
 
 ### Via GitHub
 
-To fetch a Github Repository's readme file, use the `Flatdoc.github` fetcher.
+To fetch a Github Repository's readme file, use the `Nextdoc.github` fetcher.
 This will fetch the Readme file of the repository's default branch.
 
 ``` javascript
-Flatdoc.run({
-  fetcher: Flatdoc.github('USER/REPO')
+Nextdoc.run({
+  fetcher: Nextdoc.github('USER/REPO')
 });
 ```
 
@@ -50,8 +50,8 @@ You may also fetch another file other than the Readme file, just specify it as
 the 2nd parameter.
 
 ``` javascript
-Flatdoc.run({
-  fetcher: Flatdoc.github('USER/REPO', 'Changelog.md')
+Nextdoc.run({
+  fetcher: Nextdoc.github('USER/REPO', 'Changelog.md')
 });
 ```
 
@@ -65,8 +65,8 @@ You may also fetch a file. In this example, this fetches the file `Readme.md` in
 the same folder as the HTML file.
 
 ``` javascript
-Flatdoc.run({
-  fetcher: Flatdoc.file('Readme.md')
+Nextdoc.run({
+  fetcher: Nextdoc.file('Readme.md')
 });
 ```
 
@@ -74,15 +74,15 @@ You may actually supply any URL here. It will be fetched via AJAX. This is
 useful for local testing.
 
 ``` javascript
-Flatdoc.run({
-  fetcher: Flatdoc.file('http://yoursite.com/Readme.md')
+Nextdoc.run({
+  fetcher: Nextdoc.file('http://yoursite.com/Readme.md')
 });
 ```
 
 How it works
 ------------
 
-Flatdoc is a hosted `.js` file (along with a theme and its assets) that you can
+Nextdoc is a hosted `.js` file (along with a theme and its assets) that you can
 add into any page hosted anywhere.
 
 #### All client-side
@@ -90,7 +90,7 @@ add into any page hosted anywhere.
 There are no build scripts or 3rd-party services involved. Everything is done in
 the browser. Worried about performance? Oh, It's pretty fast.
 
-Flatdoc utilizes the [GitHub API] to fetch your project's Readme files. You may
+Nextdoc utilizes the [GitHub API] to fetch your project's Readme files. You may
 also configure it to fetch any arbitrary URL via AJAX.
 
 #### Lightning-fast parsing
@@ -98,14 +98,14 @@ also configure it to fetch any arbitrary URL via AJAX.
 Next, it uses [marked], an extremely fast Markdown parser that has support for
 GitHub flavored Markdown.
 
-Flatdoc then simply renders *menu* and *content* DOM elements to your HTML
-document. Flatdoc also comes with a default theme to style your page for you, or
+Nextdoc then simply renders *menu* and *content* DOM elements to your HTML
+document. Nextdoc also comes with a default theme to style your page for you, or
 you may opt to create your own styles.
 
 Markdown extras
 ---------------
 
-Flatdoc offers a few harmless, unobtrusive extras that come in handy in building
+Nextdoc offers a few harmless, unobtrusive extras that come in handy in building
 documentation sites.
 
 #### Code highlighting
@@ -178,7 +178,7 @@ Makes the opening paragraph large.
 ### Adding more markup
 
 You have full control over the HTML file, just add markup wherever you see fit.
-As long as you leave `role='flatdoc-content'` and `role='flatdoc-menu'` empty as
+As long as you leave `role='nextdoc-content'` and `role='nextdoc-menu'` empty as
 they are, you'll be fine.
 
 Here are some ideas to get you started.
@@ -190,11 +190,11 @@ Here are some ideas to get you started.
 
 ### JavaScript hooks
 
-Flatdoc emits the events `flatdoc:loading` and `flatdoc:ready` to help you make
+Nextdoc emits the events `nextdoc:loading` and `nextdoc:ready` to help you make
 custom behavior when the document loads.
 
 ``` js
-$(document).on('flatdoc:ready', function() {
+$(document).on('nextdoc:ready', function() {
   // I don't like this section to appear
   $("#acknowledgements").remove();
 });
@@ -203,7 +203,7 @@ $(document).on('flatdoc:ready', function() {
 Full customization
 ------------------
 
-You don't have to be restricted to the given theme. Flatdoc is just really one
+You don't have to be restricted to the given theme. Nextdoc is just really one
 `.js` file that expects 2 HTML elements (for *menu* and *content*). Start with
 the blank template and customize as you see fit.
 
@@ -215,7 +215,7 @@ Misc
 Inspirations
 ------------
 
-The following projects have inspired Flatdoc.
+The following projects have inspired Nextdoc.
 
  * [Backbone.js] - Jeremy's projects have always adopted this "one page
  documentation" approach which I really love.
@@ -223,7 +223,7 @@ The following projects have inspired Flatdoc.
  * [Docco] - Jeremy's Docco introduced me to the world of literate programming,
  and side-by-side documentation in general.
 
- * [Stripe] - Flatdoc took inspiration on the look of their API documentation.
+ * [Stripe] - Nextdoc took inspiration on the look of their API documentation.
 
  * [DocumentUp] - This service has the same idea but does a hosted readme 
  parsing approach.
@@ -237,19 +237,16 @@ licensed under Creative Commons.
 Acknowledgements
 ----------------
 
+© 2019 Luiz Américo Pereira Câmara
 © 2013, 2014, Rico Sta. Cruz. Released under the [MIT 
 License](http://www.opensource.org/licenses/mit-license.php).
 
-**Flatdoc** is authored and maintained by [Rico Sta. Cruz][rsc] with help from its 
-[contributors][c].
-
- * [My website](http://ricostacruz.com) (ricostacruz.com)
- * [Github](http://github.com/rstacruz) (@rstacruz)
- * [Twitter](http://twitter.com/rstacruz) (@rstacruz)
+**Nextdoc** is maintained by Luiz Américo Pereira Câmara 
+**Flatdoc** was authored and maintained by [Rico Sta. Cruz][rsc]
 
 [rsc]: http://ricostacruz.com
-[c]:   http://github.com/rstacruz/flatdoc/contributors
 
+[flatdoc]: https://github.com/rstacruz/flatdoc
 [GitHub API]: http://github.com/api
 [marked]: https://github.com/chjj/marked
 [Backbone.js]: http://backbonejs.org
@@ -260,7 +257,7 @@ License](http://www.opensource.org/licenses/mit-license.php).
 [fences]:https://help.github.com/articles/github-flavored-markdown#syntax-highlighting
 [DocumentUp]: http://documentup.com
 
-[project]: https://github.com/rstacruz/flatdoc
-[template]: https://github.com/rstacruz/flatdoc/raw/gh-pages/templates/template.html
-[blank]: https://github.com/rstacruz/flatdoc/raw/gh-pages/templates/blank.html
-[dist]: https://github.com/rstacruz/flatdoc/tree/gh-pages/v/0.9.0
+[project]: https://github.com/blikblum/nextdoc
+[template]: https://github.com/blikblum/nextdoc/raw/gh-pages/templates/template.html
+[blank]: https://github.com/blikblum/nextdoc/raw/gh-pages/templates/blank.html
+[dist]: https://github.com/blikblum/nextdoc/tree/gh-pages/v/0.9.0

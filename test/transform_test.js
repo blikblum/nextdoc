@@ -1,9 +1,9 @@
-describe("Flatdoc.transformer", function() {
+describe("Nextdoc.transformer", function() {
   var trans;
 
   beforeEach(require('./setup'));
   beforeEach(function() {
-    trans = Flatdoc.transformer;
+    trans = Nextdoc.transformer;
   });
 
   it(".addIDs()", function() {
