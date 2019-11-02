@@ -11,20 +11,20 @@
     "type": "git",
     "url": "https://github.com/blikblum/nextdoc.git"
   },
-  "scripts": {    
+  "scripts": {
     "reference": "dox -r < nextdoc.js | node support/dox2md.js --default-level 3 > Reference.md",
     "test": "mocha",
     "theme-white": "stylus -U -u nib < theme-white/style.styl > theme-white/style.css"
   },
   "main": "nextdoc.js",
   "devDependencies": {
-    "chai": "1.10.0",
-    "commander": "1.1.1",
-    "dox": "0.4.3",
-    "jsdom": "9.12.0",
-    "mocha": "2.5.3",
-    "nib": "0.9.1",
-    "stylus": "0.46.3",
-    "uglify-js": "2.3.6"
+    "chai": "4.2.0",
+    "commander": "4.0.0",
+    "dox": "0.9.0",
+    "jsdom": "15.2.0",
+    "mocha": "6.2.2",
+    "nib": "1.1.2",
+    "stylus": "0.54.7",
+    "uglify-js": "3.6.7"
   }
 }
